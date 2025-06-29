@@ -132,8 +132,16 @@ document.querySelectorAll('.js-cart-button').forEach((button) => {
       });
     }
     
+    let cartquantity = 0;
 
+    cart.forEach((items) => {
+      cartquantity += items.quantity
+    })
+
+    document.querySelector('.cart-quantity').innerHTML = cartquantity;
     
+
+    console.log(Number(cartquantity));
     console.log(cart);
     
   })
