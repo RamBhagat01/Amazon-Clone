@@ -1,4 +1,4 @@
-import {cart} from '../data/cart.js';
+import {cart, addtoCart} from '../data/cart.js';
 import {products} from '../data/products.js';
 
 
@@ -111,30 +111,7 @@ products.forEach((product,index) => {
 document.querySelector('.products-grid').innerHTML = list
 
 
-//adding function to add to cart button...
 
-function addtoCart (productid) {
-  let matchingitem;
-
-    cart.forEach((item) => {
- 
-      if (productid === item.productid) {
-        matchingitem = item
-      }
-   });
-
-
-    if (matchingitem){
-      matchingitem.quantity += 1
-    }
-    else {
-      cart.push({
-        productid: productid,
-        quantity: 1 
-      });
-    }
-
-}
 
 //add functionality to add to cart button by event listener attribute...
 
@@ -167,7 +144,7 @@ function updateCart() {
   
 
  // console.log(Number(cartquantity));
- // console.log(cart);
+ console.log(cart);
 };
 
 
