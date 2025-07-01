@@ -1,4 +1,4 @@
-import { cart, deletecart } from '../data/cart.js';
+import { cart, deletecart,cartquantity1 } from '../data/cart.js';
 import { products } from '../data/products.js';
 
 let cartsummary = '';
@@ -111,9 +111,20 @@ document.querySelectorAll('.js-delete')
       document.querySelector(`.js-delete-${proid}`).remove();
 
       console.log(cart);
+      document.querySelector('.js-update-cart').innerHTML = cartquantity1();
+
     })
 
   })
 
+  
+  document.querySelector('.js-update-cart').innerHTML = cartquantity1();
+  
+
+
+ 
+ 
+
+  
 
 

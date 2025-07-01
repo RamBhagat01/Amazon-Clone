@@ -141,7 +141,6 @@ function updateCart() {
   })
 
   document.querySelector('.cart-quantity').innerHTML = cartquantity;
-  
 
  // console.log(Number(cartquantity));
  console.log(cart);

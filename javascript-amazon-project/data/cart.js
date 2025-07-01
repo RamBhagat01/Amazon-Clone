@@ -39,7 +39,8 @@ function addstorage() {
     }
 
     addstorage();
-
+    cartquantity1();
+    
 }
 
 export function deletecart(proid) {
@@ -55,4 +56,18 @@ export function deletecart(proid) {
   cart = newcart ;
 
   addstorage();
+  cartquantity1();
+}
+
+export function cartquantity1() {
+  
+  let count= 0;
+
+  cart.forEach((it) => {
+    count += it.quantity
+    
+  })
+
+  console.log(count);
+  return count;
 }
