@@ -1,6 +1,10 @@
 import { cart, deletecart,cartquantity1 } from '../data/cart.js';
 import { products } from '../data/products.js';
 
+
+
+console.log(dayjs());
+
 let cartsummary = '';
 
 cart.forEach((item) => {
