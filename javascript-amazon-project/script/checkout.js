@@ -1,9 +1,14 @@
 import { cart, deletecart,cartquantity1 } from '../data/cart.js';
 import { products } from '../data/products.js';
+import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 
 
+//working with dayjs feature
+//console.log(dayjs());
 
-console.log(dayjs());
+console.log( dayjs().add(7 , 'days').format('dddd, MMMM D'));
+
+
 
 let cartsummary = '';
 
