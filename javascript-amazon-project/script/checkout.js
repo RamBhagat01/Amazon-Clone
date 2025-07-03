@@ -1,4 +1,4 @@
-import { cart, deletecart,cartquantity1 } from '../data/cart.js';
+import { cart, deletecart,cartquantity1, addstorage} from '../data/cart.js';
 import { products } from '../data/products.js';
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 import {deliverydetails} from '../data/deliveryoption.js'
@@ -35,7 +35,7 @@ cart.forEach((item) => {
 
   cartsummary += `
   <div class="cart-item-container js-delete-${matcheditems.id}">
-    <div class="delivery-date">
+    <div class="delivery-date js-final-render ">
       Delivery date: ${finaldate}
     </div>
 
@@ -105,7 +105,10 @@ function generatehtml (matcheditems , deliverydetails, item) {
 
     html += `
       
-        <div class="delivery-option">
+        <div class="delivery-option js-render"
+        data-product-id = "${matcheditems.id}"
+        data-delivery-id = "${option.id}"
+        >
           <input type="radio"
            ${checking ?'checked' : ''}
             class="delivery-option-input"
@@ -153,12 +156,43 @@ document.querySelectorAll('.js-delete')
 
   
   document.querySelector('.js-update-cart').innerHTML = cartquantity1();
+
+
+
+  //adding backend = functionality to delivery radio buttons and saving them to local storage...
   
+function deliverydate(cart, deliverydetails) { 
+  document.querySelectorAll('.js-render')
+    .forEach((option) => {
+      option.addEventListener('click', () => {
 
+        const deliveryid1 = option.dataset.deliveryId
+        const productid1 = option.dataset.productId
 
+        //console.log(deliveryid1);....check
+        //console.log(productid1);.....check
+        
+        let maching1 = '';
+
+        cart.forEach((item) => {
+          if ( productid1 === item.productid) {
+            maching1 = item 
+            maching1.deliveryid = deliveryid1
+          }
+        })  
+
+       console.log(maching1);
+       addstorage();
+       
+
+      })
+
+    })
+}
+
+  deliverydate(cart, deliverydetails);
  
- 
 
-  
+
 
 
