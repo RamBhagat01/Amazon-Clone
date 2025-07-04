@@ -87,9 +87,10 @@ export function render() {
     </div>
     `;
 
-    
-
   });
+
+
+
 
   function generatehtml (matcheditems , deliverydetails, item) {
 
@@ -105,7 +106,7 @@ export function render() {
       : `$${(option.pricecents/100).toFixed(2)}`
       
       const checking = item.deliveryid === option.id
-      console.log(checking);
+     // console.log(checking);
 
       html += `
         
@@ -129,16 +130,14 @@ export function render() {
           `
   })
 
-
     return html;
-
 
   }
 
-
-
-
   document.querySelector('.order-summary').innerHTML = cartsummary;
+
+
+
 
   //function of delete button...
 
@@ -151,7 +150,7 @@ export function render() {
 
         document.querySelector(`.js-delete-${proid}`).remove();
 
-        console.log(cart);
+       // console.log(cart);
         document.querySelector('.js-update-cart').innerHTML = cartquantity1();
 
       })
@@ -185,7 +184,7 @@ export function render() {
             }
           })  
 
-        console.log(maching1);
+       // console.log(maching1);
         addstorage();
         render();
         
@@ -197,6 +196,59 @@ export function render() {
 
     deliverydate(cart, deliverydetails);
   
+
+
+
+
+
+
+  function amountcalculator (cart) {
+    let totalprice = 0;
+    let deliverycharges = 0 ;
+    let totalwithdelivery = 0;
+    let totalwithtaxes = 0;
+
+    cart.forEach((item) => {
+
+      let maching2 = '';
+    
+      products.forEach((product) => {
+        if ( product.id === item.productid){
+          maching2 = product
+        }
+      })
+
+      const price =  maching2.priceCents;
+      totalprice += item.quantity * price;
+      
+      // let deliverycharges ;
+
+      deliverydetails.forEach((detail) => {
+
+        if (item.deliveryid === detail.id){
+
+          deliverycharges += detail.pricecents
+
+        }
+
+      })
+
+    })
+
+    //console.log(totalprice);.....checked
+    //console.log(deliverycharges);......checked
+
+    totalwithdelivery = totalprice + deliverycharges;
+
+    //console.log(totalwithdelivery);.....checked
+
+    totalwithtaxes = (totalwithdelivery * 1/10) + totalwithdelivery
+
+    //console.log(totalwithtaxes);....checked
+
+    
+  }
+  amountcalculator(cart);
 
 
 
