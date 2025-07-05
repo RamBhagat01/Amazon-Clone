@@ -235,6 +235,7 @@ export function render() {
       
       render();
       htmlrender();
+      addstorage();
 
 
       })
