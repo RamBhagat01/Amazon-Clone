@@ -66,6 +66,9 @@ export function deletecart(proid) {
   cartquantity1();
 }
 
+
+//cart quantity feature 
+
 export function cartquantity1() {
   
   let count= 0;

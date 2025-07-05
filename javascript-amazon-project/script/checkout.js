@@ -2,7 +2,8 @@ import {render} from './checkout/order-summary.js';
 import {call} from './checkout/payment-summary.js'
 import { cart} from '../data/cart.js';
 import { products } from '../data/products.js';
-import {deliverydetails} from '../data/deliveryoption.js'
+import {deliverydetails} from '../data/deliveryoption.js';
+import {cartquantity1} from '../data/cart.js'
 
 
 
@@ -73,7 +74,7 @@ call();
         </div>
 
         <div class="payment-summary-row">
-        <div>Items (3):</div>
+        <div>Items (${cartquantity1()}):</div>
         <div class="payment-summary-money">$${(Math.round(totalprice))/100}</div>
         </div>
 
