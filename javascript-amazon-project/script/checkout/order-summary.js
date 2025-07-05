@@ -63,8 +63,9 @@ export function render() {
               Quantity: <span class="quantity-label">${item.quantity}</span>
             </span>
 
-            <span class="update-quantity-link link-primary">
-              Update
+            <span class="update-quantity-link link-primary update-quantitybutton"
+            data-update-quant ="${matcheditems.id}">
+              Quantity (+1)
             </span>
 
             <span class="delete-quantity-link link-primary js-delete" 
@@ -90,7 +91,6 @@ export function render() {
 
   });
 
-  
 
 
 // generated rest of html here because its delivery date related...
@@ -202,7 +202,46 @@ export function render() {
       })
   }
 
-    deliverydate(cart, deliverydetails);
+  deliverydate(cart, deliverydetails);
+  
+
+
+
+//adding fumction to update or quantity (+1) button...
+
+  function updatebutton(cart) {
+
+    document.querySelectorAll('.update-quantitybutton')
+    .forEach((button2) => {
+      button2.addEventListener('click',() => {
+
+      const updateid = button2.dataset.updateQuant
+
+      let maching3 ;
+
+      cart.forEach((item2) => {
+        if ( updateid === item2.productid) {
+          maching3 = item2
+
+        }
+      })
+
+      
+      maching3.quantity += 1
+      
+      //console.log(maching3) ;
+      //checked...
+
+      
+      render();
+      htmlrender();
+
+
+      })
+    })
+  };
+  updatebutton(cart);
+  
   
 
 

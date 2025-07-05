@@ -11,6 +11,7 @@ render();
 call();
 
 
+//calculating price if cart items and printing them on website..
 
  export function htmlrender() {
 
@@ -105,5 +106,10 @@ call();
 
     
         
-}
+};
+
 htmlrender();
+
+
+
+
