@@ -2,6 +2,7 @@ import { cart, deletecart,cartquantity1, addstorage} from '../../data/cart.js';
 import { products } from '../../data/products.js';
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 import {deliverydetails} from '../../data/deliveryoption.js'
+import { htmlrender } from '../checkout.js';
 
 
 //working with dayjs feature
@@ -89,8 +90,10 @@ export function render() {
 
   });
 
+  
 
 
+// generated rest of html here because its delivery date related...
 
   function generatehtml (matcheditems , deliverydetails, item) {
 
@@ -153,6 +156,8 @@ export function render() {
        // console.log(cart);
         document.querySelector('.js-update-cart').innerHTML = cartquantity1();
 
+        htmlrender();
+
       })
 
     })
@@ -162,9 +167,11 @@ export function render() {
 
 
 
-    //adding backend = functionality to delivery radio buttons and saving them to local storage...
+
+
+//adding backend = functionality to delivery radio buttons and saving them to local storage...
     
-  function deliverydate(cart, deliverydetails) { 
+  function deliverydate(cart) { 
     document.querySelectorAll('.js-render')
       .forEach((option) => {
         option.addEventListener('click', () => {
@@ -187,6 +194,7 @@ export function render() {
        // console.log(maching1);
         addstorage();
         render();
+        htmlrender();
         
 
         })
@@ -200,7 +208,7 @@ export function render() {
 
 
 
-
+/*
 
   function amountcalculator (cart) {
     let totalprice = 0;
@@ -249,6 +257,8 @@ export function render() {
     
   }
   amountcalculator(cart);
+
+  */
 
 
 

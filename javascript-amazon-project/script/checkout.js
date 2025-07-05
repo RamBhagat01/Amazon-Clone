@@ -1,12 +1,68 @@
 import {render} from './checkout/order-summary.js';
 import {call} from './checkout/payment-summary.js'
+import { cart} from '../data/cart.js';
+import { products } from '../data/products.js';
+import {deliverydetails} from '../data/deliveryoption.js'
+
+
 
 render();
 call();
 
 
 
-function htmlrender() {
+ export function htmlrender() {
+
+    let totalprice = 0;
+    let deliverycharges = 0 ;
+    let totalwithdelivery = 0;
+    let tax = 0;
+    let totalwithtaxes = 0;
+   
+
+    
+
+    cart.forEach((item) => {
+
+      let maching2 = '';
+    
+      products.forEach((product) => {
+        if ( product.id === item.productid){
+          maching2 = product
+        }
+      })
+
+      const price =  maching2.priceCents;
+      totalprice += item.quantity * price;
+      
+      // let deliverycharges ;
+
+      deliverydetails.forEach((detail) => {
+
+        if (item.deliveryid === detail.id){
+
+          deliverycharges += detail.pricecents
+
+        }
+
+      })
+
+    })
+
+    //console.log(totalprice);.....checked
+    //console.log(deliverycharges);......checked
+
+    totalwithdelivery = totalprice + deliverycharges;
+
+    //console.log(totalwithdelivery);.....checked
+
+    tax = totalwithdelivery * 1/10;
+
+    totalwithtaxes = tax + totalwithdelivery;
+
+    //console.log(totalwithtaxes);....checked
+
+  
 
     document.querySelector('.payment-summary').innerHTML=
 
@@ -18,33 +74,35 @@ function htmlrender() {
 
         <div class="payment-summary-row">
         <div>Items (3):</div>
-        <div class="payment-summary-money">$42.75</div>
+        <div class="payment-summary-money">$${totalprice/100}</div>
         </div>
 
         <div class="payment-summary-row">
         <div>Shipping &amp; handling:</div>
-        <div class="payment-summary-money">$4.99</div>
+        <div class="payment-summary-money">$${deliverycharges/100}</div>
         </div>
 
         <div class="payment-summary-row subtotal-row">
         <div>Total before tax:</div>
-        <div class="payment-summary-money">$47.74</div>
+        <div class="payment-summary-money">$${totalwithdelivery/100}</div>
         </div>
 
         <div class="payment-summary-row">
         <div>Estimated tax (10%):</div>
-        <div class="payment-summary-money">$4.77</div>
+        <div class="payment-summary-money">$${tax/100}</div>
         </div>
 
         <div class="payment-summary-row total-row">
         <div>Order total:</div>
-        <div class="payment-summary-money">$52.51</div>
+        <div class="payment-summary-money">$${(totalwithtaxes/100).toFixed(2)}</div>
         </div>
 
         <button class="place-order-button button-primary">
         Place your order
         </button>
     </div>`
+
+    
         
 }
 htmlrender();
