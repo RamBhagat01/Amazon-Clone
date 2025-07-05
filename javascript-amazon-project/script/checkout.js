@@ -74,27 +74,27 @@ call();
 
         <div class="payment-summary-row">
         <div>Items (3):</div>
-        <div class="payment-summary-money">$${totalprice/100}</div>
+        <div class="payment-summary-money">$${(Math.round(totalprice))/100}</div>
         </div>
 
         <div class="payment-summary-row">
         <div>Shipping &amp; handling:</div>
-        <div class="payment-summary-money">$${deliverycharges/100}</div>
+        <div class="payment-summary-money">$${(Math.round(deliverycharges))/100}</div>
         </div>
 
         <div class="payment-summary-row subtotal-row">
         <div>Total before tax:</div>
-        <div class="payment-summary-money">$${totalwithdelivery/100}</div>
+        <div class="payment-summary-money">$${(Math.round(totalwithdelivery))/100}</div>
         </div>
 
         <div class="payment-summary-row">
         <div>Estimated tax (10%):</div>
-        <div class="payment-summary-money">$${tax/100}</div>
+        <div class="payment-summary-money">$${(Math.round(tax))/100}</div>
         </div>
 
         <div class="payment-summary-row total-row">
         <div>Order total:</div>
-        <div class="payment-summary-money">$${(totalwithtaxes/100).toFixed(2)}</div>
+        <div class="payment-summary-money">$${((Math.round(totalwithtaxes))/100).toFixed(2)}</div>
         </div>
 
         <button class="place-order-button button-primary">
