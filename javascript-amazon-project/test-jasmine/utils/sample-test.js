@@ -1,4 +1,4 @@
-import { formatcurrency } from "./formatcurrency.js";
+import { formatcurrency } from '../formatcurrency.js';
 
 describe('test suite: currency', ()=> {
 
