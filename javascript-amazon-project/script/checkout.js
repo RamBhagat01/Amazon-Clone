@@ -3,8 +3,8 @@ import {call} from './checkout/payment-summary.js'
 import { cart} from '../data/cart.js';
 import { products } from '../data/products.js';
 import {deliverydetails} from '../data/deliveryoption.js';
-import {cartquantity1} from '../data/cart.js'
-
+import {cartquantity1} from '../data/cart.js';
+import '../data/cart-oop.js';
 
 
 render();
