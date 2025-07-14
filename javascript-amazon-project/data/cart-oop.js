@@ -1,16 +1,18 @@
-const cart = {
+function Cart(key) {
+
+  const cart = {
 
     cartitems: undefined,
     
     
     loadfromstorage() {
 
-        this.cartitems = JSON.parse(localStorage.getItem('cart-oop'));
+        this.cartitems = JSON.parse(localStorage.getItem(key));
 
         if (!this.cartitems) {
             this.cartitems = [{
             productid: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
-            quantity: 2,
+            quantity: 1,
             deliveryid :'1'
             }
             
@@ -25,7 +27,7 @@ const cart = {
 
 
     addstorage() {
-        localStorage.setItem('cart-oop', JSON.stringify(this.cartitems));
+        localStorage.setItem(key, JSON.stringify(this.cartitems));
     },
         
         
@@ -92,17 +94,24 @@ const cart = {
 
     
 
+    };  
+
+    return cart;
 };
 
+const cart = Cart('cart-oop');
+const bcart = Cart('cort-business')
 
 cart.loadfromstorage();
+//cart.addtoCart('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');
+//cart.deletecart('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');
 
-
-
-cart.addtoCart('e43638ce-6aa0-4b85-b27f-e1d07eb678c6')
+bcart.loadfromstorage();
+//cart.addtoCart('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');
 cart.deletecart('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');
 
- console.log(cart.cartitems);
+console.log(cart)
+console.log(bcart);
 
   
 
