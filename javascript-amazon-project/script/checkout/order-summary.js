@@ -55,7 +55,7 @@ export function render() {
           </div>
 
           <div class="product-price">
-            $${(matcheditems.priceCents / 100).toFixed(2)}
+            ${matcheditems.priceCents1()}
           </div>
 
           <div class="product-quantity">
