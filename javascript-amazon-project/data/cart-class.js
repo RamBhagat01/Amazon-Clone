@@ -1,19 +1,19 @@
 class Cart {
 
     cartitems= undefined;
-    key = undefined;
+    #key = undefined;
 
     constructor(key2) {
 
-        this.key = key2
-        this.loadfromstorage();
+        this.#key = key2
+        this.#loadfromstorage();
 
     };
     
     
-    loadfromstorage() {
+    #loadfromstorage() {
 
-        this.cartitems = JSON.parse(localStorage.getItem(this.key));
+        this.cartitems = JSON.parse(localStorage.getItem(this.#key));
 
         if (!this.cartitems) {
             this.cartitems = [{
@@ -33,7 +33,7 @@ class Cart {
 
 
     addstorage() {
-        localStorage.setItem(this.key, JSON.stringify(this.cartitems));
+        localStorage.setItem(this.#key, JSON.stringify(this.cartitems));
     };
         
         
