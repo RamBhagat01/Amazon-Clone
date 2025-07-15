@@ -1,7 +1,14 @@
 class Cart {
 
-     cartitems= undefined;
-     key = undefined;
+    cartitems= undefined;
+    key = undefined;
+
+    constructor(key2) {
+
+        this.key = key2
+        this.loadfromstorage();
+
+    };
     
     
     loadfromstorage() {
@@ -91,11 +98,23 @@ class Cart {
         return count;
     };
 
+   
+
 }
 
-const cart = new Cart();
-const bcart = new Cart();
+const cart = new Cart('cart-oop');
+const bcart = new Cart('cart-bus');
 
+cart.addtoCart('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');
+
+bcart.deletecart('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');
+
+
+console.log(cart)
+console.log(bcart);
+
+
+/*
 
 cart.key = 'cart-oop'
 bcart.key = 'cart-bus'
@@ -106,8 +125,8 @@ cart.addtoCart('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');
 //cart.deletecart('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');
 
 bcart.loadfromstorage();
-//cart.addtoCart('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');
-cart.deletecart('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');
+//bcart.addtoCart('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');
+bcart.deletecart('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');
 
 console.log(cart)
 console.log(bcart);
@@ -118,4 +137,5 @@ console.log(bcart);
 console.log(cart instanceof Cart);
 console.log(bcart instanceof Cart);
 
-  
+*/
+
