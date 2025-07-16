@@ -7,6 +7,8 @@ class product {
 
   constructor(material) {
 
+    //this => refers to product class...
+
     this.id = material.id;
     this.image =  material.image;
     this.name = material.name;
@@ -35,15 +37,36 @@ class product {
 
 
 
-
+// extends => is used to recall parent class in it ...
 
 class clothing extends product{
+
+  //get all properties from product class...
+
+  //id;
+  //image;
+  //name;
+  //rating;
+  //priceCents;
+
   sizeChartLink;
 
   constructor(material1) {
     
-    //here material1 = parameter of parent constructor that is (material).....due to super property...
+    //here "material1" = parameter = ("material" down in code)....
+    //giving material1 parameter to super so that to use parent code
+
     super(material1);
+
+    //OUTPUT OF super() -:
+
+    //we know...(material1 = material)
+
+    //this.id = material.id;
+    //this.image =  material.image;
+    //this.name = material.name;
+    //this.rating = material.rating;
+    //this.priceCents = material.priceCents;
 
     this.sizeChartLink = material1.sizeChartLink;
 
@@ -64,7 +87,7 @@ class clothing extends product{
 
 /*
 
-  //PRACTICE CODE WRITTEN TO CHECK WORKING ODF CODE..
+  //PRACTICE CODE WRITTEN TO CHECK WORKING working of CODE..
 
   const tshirt = new clothing({
       id: "83d4ca15-0f35-48f5-b7a3-1ea210004f2e",
@@ -757,7 +780,7 @@ export const products = [
   }
 
 
-// do not use else statement because of POLYMORPHISM(TIME = 19:13:19)
+// do not use else statement because of POLYMORPHISM ( video time stamp = TIME = 19:13:19)
 //POLY... = MEANS WE CAN USE ONLY product.something at html generating stage...because clothing is a sub-set of product...
 
 
