@@ -13,6 +13,7 @@ class product {
     this.rating = material.rating;
     this.priceCents = material.priceCents;
 
+
   };
 
   starscount() {
@@ -27,7 +28,67 @@ class product {
    return `$${(this.priceCents/100).toFixed(2)}`
   }
 
+  sizehtml() {
+    return ``
+  } 
 }; 
+
+
+
+
+
+class clothing extends product{
+  sizeChartLink;
+
+  constructor(material1) {
+    
+    //here material1 = parameter of parent constructor that is (material).....due to super property...
+    super(material1);
+
+    this.sizeChartLink = material1.sizeChartLink;
+
+  }
+
+
+  // here we are using RERIDING FEATURE beacuse we are re-writing sizehtml '' with <a href...>
+
+  sizehtml() {
+  return `<a href = "${this.sizeChartLink}" target= "_blank" >
+    size-chart
+    </a>`
+  } 
+  
+};
+
+
+
+/*
+
+  //PRACTICE CODE WRITTEN TO CHECK WORKING ODF CODE..
+
+  const tshirt = new clothing({
+      id: "83d4ca15-0f35-48f5-b7a3-1ea210004f2e",
+      image: "images/products/adults-plain-cotton-tshirt-2-pack-teal.jpg",
+      name: "Adults Plain Cotton T-Shirt - 2 Pack",
+      rating: {
+        stars: 4.5,
+        count: 56
+      },
+      priceCents: 799,
+      keywords: [
+        "tshirts",
+        "apparel",
+        "mens"
+      ],
+      type: "clothing",
+      sizeChartLink: "images/clothing-size-chart.png"
+    });
+
+  console.log(tshirt);
+  console.log(tshirt.priceCents1());
+
+
+*/
 
 
 export const products = [
@@ -690,7 +751,18 @@ export const products = [
     ]
   }
 ].map((material) => {
-  return new product(material);
+
+  if (material.type === 'clothing') {
+    return new clothing(material)
+  }
+
+
+// do not use else statement because of POLYMORPHISM(TIME = 19:13:19)
+//POLY... = MEANS WE CAN USE ONLY product.something at html generating stage...because clothing is a sub-set of product...
+
+
+  return new product(material)
+
 });
 
-console.log(products);
+//console.log(products);

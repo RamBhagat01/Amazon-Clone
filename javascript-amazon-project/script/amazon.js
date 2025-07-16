@@ -85,6 +85,8 @@ products.forEach((product,index) => {
             </select>
           </div>
 
+          ${product.sizehtml()}
+
           <div class="product-spacer"></div>
 
           <div class="added-to-cart">
