@@ -86,6 +86,8 @@ products.forEach((product,index) => {
           </div>
 
           ${product.sizehtml()}
+          ${product.warranty1()}
+          
 
           <div class="product-spacer"></div>
 

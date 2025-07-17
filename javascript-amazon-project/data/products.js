@@ -32,7 +32,13 @@ class product {
 
   sizehtml() {
     return ``
-  } 
+  }
+ 
+  warranty1() {
+    return ``
+  }
+    
+
 }; 
 
 
@@ -82,6 +88,45 @@ class clothing extends product{
   } 
   
 };
+
+class electronics extends product {
+
+  //get all properties from product class...
+
+  //id;
+  //image;
+  //name;
+  //rating;
+  //priceCents;
+
+  warranty;
+
+  constructor(material2) {
+
+    super(material2)
+
+    //OUTPUT OF super() -:
+
+    //we know...(material2 = material)
+
+    //this.id = material.id;
+    //this.image =  material.image;
+    //this.name = material.name;
+    //this.rating = material.rating;
+    //this.priceCents = material.priceCents;
+
+    this.warranty = "images/appliance-warranty.png"
+
+  }
+
+  warranty1() {
+    return `<a href = "${this.warranty}" target = "_blank">
+    Warranty-details
+    </a>`
+  }
+
+};
+
 
 
 
@@ -170,6 +215,7 @@ export const products = [
       count: 2197
     },
     priceCents: 1899,
+    type: "appliances",
     keywords: [
       "toaster",
       "kitchen",
@@ -355,6 +401,7 @@ export const products = [
       count: 846
     },
     priceCents: 3074,
+    type: "appliances",
     keywords: [
       "water boiler",
       "appliances",
@@ -660,6 +707,7 @@ export const products = [
       count: 1211
     },
     priceCents: 2250,
+    type: "appliances",
     keywords: [
       "coffeemakers",
       "kitchen",
@@ -720,6 +768,7 @@ export const products = [
       count: 3
     },
     priceCents: 10747,
+    type: "appliances",
     keywords: [
       "food blenders",
       "kitchen",
@@ -775,17 +824,25 @@ export const products = [
   }
 ].map((material) => {
 
+  
   if (material.type === 'clothing') {
     return new clothing(material)
+    
+  }
+  
+  if (material.type === 'appliances') {
+   return new electronics(material)
+     
   }
 
 
-// do not use else statement because of POLYMORPHISM ( video time stamp = TIME = 19:13:19)
-//POLY... = MEANS WE CAN USE ONLY product.something at html generating stage...because clothing is a sub-set of product...
+  // do not use else statement because of POLYMORPHISM ( video time stamp = TIME = 19:13:19)
+
+  //POLY... = MEANS WE CAN USE ONLY product.something at html generating stage...because clothing is a sub-set of product...
 
 
   return new product(material)
 
 });
 
-//console.log(products);
+console.log(products);
