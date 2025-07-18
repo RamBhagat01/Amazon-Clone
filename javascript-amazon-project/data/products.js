@@ -845,4 +845,4 @@ export const products = [
 
 });
 
-console.log(products);
+//console.log(products);

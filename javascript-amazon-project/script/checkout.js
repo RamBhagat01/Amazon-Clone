@@ -5,6 +5,7 @@ import { products } from '../data/products.js';
 import {deliverydetails} from '../data/deliveryoption.js';
 import {cartquantity1} from '../data/cart.js';
 //import '../data/cart-class.js';
+import '../data/backend-practice.js'
 
 
 render();
