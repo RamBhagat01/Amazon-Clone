@@ -157,7 +157,49 @@ class electronics extends product {
 
 
 */
+export let products = [];
 
+
+export function loadproducts(fun) {
+
+ const xhr = new XMLHttpRequest();
+
+  xhr
+  .addEventListener('load', () => {
+    products = JSON.parse(xhr.response)
+    .map((material) => {
+
+      if (material.type === 'clothing') {
+        return new clothing(material)
+      }
+      
+      if (material.keywords === 'appliances') {
+      return new electronics(material)
+      }
+      // do not use else statement because of POLYMORPHISM ( video time stamp = TIME = 19:13:19)
+
+      //POLY... = MEANS WE CAN USE ONLY product.something at html generating stage...because clothing is a sub-set of product...
+
+      return new product(material)
+
+    });
+
+    console.log(products);
+    fun();
+    
+  });
+
+ xhr.open('GET','https://supersimplebackend.dev/products');
+ xhr.send();
+
+ 
+
+}
+
+
+
+
+/*
 
 export const products = [
   {
@@ -844,5 +886,7 @@ export const products = [
   return new product(material)
 
 });
+
+*/
 
 //console.log(products);
