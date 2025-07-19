@@ -1,20 +1,23 @@
 import {render} from './checkout/order-summary.js';
 import {call} from './checkout/payment-summary.js'
 import { cart} from '../data/cart.js';
-import { products } from '../data/products.js';
+import { loadproducts, products } from '../data/products.js';
 import {deliverydetails} from '../data/deliveryoption.js';
 import {cartquantity1} from '../data/cart.js';
 //import '../data/cart-class.js';
 //import '../data/backend-practice.js'
 
+loadproducts(() => {
+  render();
+  call();
+  htmlrender();
+})
 
-render();
-call();
 
 
 //calculating price if cart items and printing them on website..
 
- export function htmlrender() {
+export function htmlrender() {
 
     let totalprice = 0;
     let deliverycharges = 0 ;
@@ -109,7 +112,7 @@ call();
         
 };
 
-htmlrender();
+
 
 
 
