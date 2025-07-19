@@ -4,14 +4,11 @@ import { cart} from '../data/cart.js';
 import { loadproducts, products } from '../data/products.js';
 import {deliverydetails} from '../data/deliveryoption.js';
 import {cartquantity1} from '../data/cart.js';
+import { loadcart } from '../data/cart.js';
 //import '../data/cart-class.js';
 //import '../data/backend-practice.js'
 
-loadproducts(() => {
-  render();
-  call();
-  htmlrender();
-})
+
 
 
 
@@ -112,8 +109,31 @@ export function htmlrender() {
         
 };
 
+/*
+
+loadproducts(() => {
+  render();
+  call();
+  htmlrender();
+})
 
 
+*/
 
+Promise.all([
+  new Promise((resolve)=> {
+    loadproducts(() => {
+      resolve();
+    })
+  }),
 
-
+  new Promise((resolve)=> {
+    loadcart(() => {
+      resolve();
+    })
+  }),
+]).then(() => {
+    render();
+    call();
+    htmlrender();
+})
