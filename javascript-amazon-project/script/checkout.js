@@ -1,7 +1,7 @@
 import {render} from './checkout/order-summary.js';
 import {call} from './checkout/payment-summary.js'
 import { cart} from '../data/cart.js';
-import { loadproducts, products } from '../data/products.js';
+import {  products, fetchproducts } from '../data/products.js';
 import {deliverydetails} from '../data/deliveryoption.js';
 import {cartquantity1} from '../data/cart.js';
 import { loadcart } from '../data/cart.js';
@@ -121,17 +121,16 @@ loadproducts(() => {
 */
 
 Promise.all([
-  new Promise((resolve)=> {
-    loadproducts(() => {
-      resolve();
-    })
-  }),
+
+  fetchproducts()
+ ,
 
   new Promise((resolve)=> {
     loadcart(() => {
       resolve();
     })
-  }),
+  })
+
 ]).then(() => {
     render();
     call();

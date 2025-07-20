@@ -157,8 +157,46 @@ class electronics extends product {
 
 
 */
+
+
+
+
 export let products = [];
 
+
+//using new fetch feature to generate cart feature 
+//only checkout.js uses this feature
+export function fetchproducts() {
+
+  const pro = fetch('https://supersimplebackend.dev/products').then((response)=> {
+    return response.json();
+  }).then((productdetails) => {
+
+    products = productdetails.map((material) => {
+
+      if (material.type === 'clothing') {
+        return new clothing(material)
+      }
+      
+      if (material.keywords === 'appliances') {
+      return new electronics(material)
+      }
+
+      return new product(material)
+
+    });
+
+    console.log('load products via fetch')
+  })
+  
+  return pro;
+
+}
+
+
+
+//used typical http request to send request by using backend.
+//amazon.js loads from this code
 
 export function loadproducts(fun) {
 
@@ -184,15 +222,13 @@ export function loadproducts(fun) {
 
     });
 
-    console.log(products);
+    console.log('load products');
     fun();
     
   });
 
  xhr.open('GET','https://supersimplebackend.dev/products');
  xhr.send();
-
- 
 
 }
 
