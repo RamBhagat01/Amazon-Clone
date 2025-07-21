@@ -147,13 +147,27 @@ Promise.all([
 
 async function loadpage() {
 
-  await fetchproducts()
+  try {
 
-  await new Promise((resolve)=> {
-    loadcart(() => {
-      resolve();
-    })
-  });
+    //throw 'error1'
+    await fetchproducts();
+
+    await new Promise((resolve, reject)=> {
+      
+      //throw 'error2'
+      
+      loadcart(() => {
+        //reject('error3');
+        resolve();
+      })
+
+    });
+
+  } catch (error) {
+    console.log('Un-expected reeor occoured. Try again later (async - loadpage)')
+
+  }
+  
 
   render();
   call();

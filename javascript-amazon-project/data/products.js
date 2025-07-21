@@ -185,10 +185,13 @@ export function fetchproducts() {
       return new product(material)
 
     });
+    console.log('load products via fetch');
 
-    console.log('load products via fetch')
-  })
-  
+  }).catch ((error) => {
+      console.log('Un-expected reeor occoured. Try again later (fetch-products)')
+    });
+
+
   return pro;
 
 }
@@ -226,6 +229,11 @@ export function loadproducts(fun) {
     fun();
     
   });
+
+  xhr
+  .addEventListener('error' , (error) => {
+    console.log('Un-expected reeor occoured. Try again later (load-products)')
+  })
 
  xhr.open('GET','https://supersimplebackend.dev/products');
  xhr.send();
