@@ -116,10 +116,12 @@ loadproducts(() => {
   call();
   htmlrender();
 })
-
-
 */
 
+
+
+/*
+//used promise to generate the checkout page//
 Promise.all([
 
   fetchproducts()
@@ -136,3 +138,26 @@ Promise.all([
     call();
     htmlrender();
 })
+*/
+
+
+
+
+//used async await to generate cart page (after Promise.all)...
+
+async function loadpage() {
+
+  await fetchproducts()
+
+  await new Promise((resolve)=> {
+    loadcart(() => {
+      resolve();
+    })
+  });
+
+  render();
+  call();
+  htmlrender();
+
+}
+loadpage();
