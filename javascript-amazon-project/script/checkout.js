@@ -178,7 +178,7 @@ async function loadpage() {
   document.querySelector('.js-placeorder')
   .addEventListener('click' , async () => {
   
-    try {
+   try {
       
       const response = await fetch('https://supersimplebackend.dev/orders', {
 
@@ -195,6 +195,7 @@ async function loadpage() {
 
       const response2 = await response.json();
       addorders(response2);
+      console.log(response2);
 
     } catch (error) {
       console.log('Unexpected error. Try later (order-request-to-backend.)')
