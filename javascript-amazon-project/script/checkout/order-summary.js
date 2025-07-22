@@ -14,29 +14,27 @@ import { htmlrender } from '../checkout.js';
 
 export function render() {
 
-
-
   let cartsummary = '';
 
   cart.forEach((item) => {
-      const itemid = item.productid;
+    const itemid = item.productId;
 
-      let matcheditems ;
+    let matcheditems ;
 
-      products.forEach((product) => {
-        if (product.id === itemid) {
-          matcheditems = product;
-        }
-      });
+    products.forEach((product) => {
+      if (product.id === itemid) {
+        matcheditems = product;
+      }
+    });
 
-      let finaldate = '';
+    let finaldate = '';
 
-      deliverydetails.forEach((detail) => {
-        if ( item.deliveryid === detail.id ) {
+    deliverydetails.forEach((detail) => {
+      if ( item.deliveryid === detail.id ) {
 
-        finaldate = dayjs().add(detail.deliverydays , 'days').format('dddd, MMMM D')
-        }
-      })
+      finaldate = dayjs().add(detail.deliverydays , 'days').format('dddd, MMMM D')
+      }
+    })
 
     cartsummary += `
     <div class="cart-item-container js-delete-${matcheditems.id}">
@@ -108,8 +106,9 @@ export function render() {
       ? 'FREE'
       : `$${(option.pricecents/100).toFixed(2)}`
       
-      const checking = item.deliveryid === option.id
-     // console.log(checking);
+      const checking = (item.deliveryid === option.id)
+      //console.log(typeof checking); = boolean value
+      //console.log(checking);
 
       html += `
         
@@ -117,7 +116,7 @@ export function render() {
           data-product-id = "${matcheditems.id}"
           data-delivery-id = "${option.id}"
           >
-            <input type="radio"
+            <input type="radio" 
             ${checking ?'checked' : ''}
               class="delivery-option-input"
               name="delivery-option-${matcheditems.id}">
@@ -185,7 +184,7 @@ export function render() {
           let maching1 = '';
 
           cart.forEach((item) => {
-            if ( productid1 === item.productid) {
+            if ( productid1 === item.productId) {
               maching1 = item 
               maching1.deliveryid = deliveryid1
             }
@@ -220,7 +219,7 @@ export function render() {
       let maching3 ;
 
       cart.forEach((item2) => {
-        if ( updateid === item2.productid) {
+        if ( updateid === item2.productId) {
           maching3 = item2
 
         }

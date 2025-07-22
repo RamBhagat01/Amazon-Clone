@@ -127,9 +127,9 @@ function rendercallback() {
     button.addEventListener(
       'click' , () => {
 
-      const productid = button.dataset.productId;
+      const productId = button.dataset.productId;
 
-      addtoCart(productid);
+      addtoCart(productId);
       updateCart();
     }
     );

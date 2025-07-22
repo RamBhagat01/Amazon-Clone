@@ -5,6 +5,7 @@ import {  products, fetchproducts } from '../data/products.js';
 import {deliverydetails} from '../data/deliveryoption.js';
 import {cartquantity1} from '../data/cart.js';
 import { loadcart } from '../data/cart.js';
+import { addorders } from  '../data/orders.js'
 //import '../data/cart-class.js';
 //import '../data/backend-practice.js'
 
@@ -12,7 +13,7 @@ import { loadcart } from '../data/cart.js';
 
 
 
-//calculating price if cart items and printing them on website..
+//calculating price of cart items and printing them on website..
 
 export function htmlrender() {
 
@@ -30,7 +31,7 @@ export function htmlrender() {
       let maching2 = '';
     
       products.forEach((product) => {
-        if ( product.id === item.productid){
+        if ( product.id === item.productId){
           maching2 = product
         }
       })
@@ -100,7 +101,7 @@ export function htmlrender() {
         <div class="payment-summary-money">$${((Math.round(totalwithtaxes))/100).toFixed(2)}</div>
         </div>
 
-        <button class="place-order-button button-primary">
+        <button class="place-order-button button-primary js-placeorder">
         Place your order
         </button>
     </div>`
@@ -173,5 +174,40 @@ async function loadpage() {
   call();
   htmlrender();
 
+
+  document.querySelector('.js-placeorder')
+  .addEventListener('click' , async () => {
+  
+    try {
+      
+      const response = await fetch('https://supersimplebackend.dev/orders', {
+
+        // ALL 3 THINGS ARE NECESSARY OTHERWISE IT WILL GIVE A ERROR.
+        // BODY IS ACCORDING TO THE DOCUMENTATION OF THE BACKEND.
+
+        method: 'POST',
+        headers: {'Content-type': 'application/json'},
+        body: JSON.stringify({cart: cart})
+
+      });
+
+      // Here after the POST request server send back our order id along with cart items(ordered) with their quantity.
+
+      const response2 = await response.json();
+      addorders(response2);
+
+    } catch (error) {
+      console.log('Unexpected error. Try later (order-request-to-backend.)')
+    };
+    
+
+    //window.location.href CHANCES THE LOCATION OF URL AND REDIRECT US TO OTHER FILE ON CLICKING 'PLACE-ORDER';
+    // Example = https://127.0.0.1:5500/checkout.html => THEN IT WILL (JUST) CHANGE FILE PATH FROM {checkout.html} TO {orders.html}. 
+
+    window.location.href = 'orders.html';
+
+  })
+
 }
 loadpage();
+
