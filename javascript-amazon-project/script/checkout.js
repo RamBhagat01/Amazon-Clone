@@ -43,7 +43,7 @@ export function htmlrender() {
 
       deliverydetails.forEach((detail) => {
 
-        if (item.deliveryid === detail.id){
+        if (item.deliveryOptionId === detail.deliveryOptionId){
 
           deliverycharges += detail.pricecents
 
@@ -205,7 +205,7 @@ async function loadpage() {
     //window.location.href CHANCES THE LOCATION OF URL AND REDIRECT US TO OTHER FILE ON CLICKING 'PLACE-ORDER';
     // Example = https://127.0.0.1:5500/checkout.html => THEN IT WILL (JUST) CHANGE FILE PATH FROM {checkout.html} TO {orders.html}. 
 
-    window.location.href = 'orders.html';
+    //window.location.href = 'orders.html';
 
   })
 

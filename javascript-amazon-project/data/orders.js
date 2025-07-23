@@ -1,4 +1,4 @@
-const orders = JSON.parse(localStorage.getItem('orders')) || [];
+export const orders = JSON.parse(localStorage.getItem('orders')) || [];
 
 export function addorders(list) {
  orders.unshift(list);

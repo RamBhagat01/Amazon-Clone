@@ -1,13 +1,13 @@
  export const deliverydetails = [{
-   id : '1' , 
+   deliveryOptionId: '1' , 
    deliverydays: 7,
    pricecents: 0
 },{
-   id : '2' , 
+   deliveryOptionId: '2' , 
    deliverydays: 3,
    pricecents: 499
 },{
-   id : '3' , 
+   deliveryOptionId: '3' , 
    deliverydays: 1,
    pricecents: 999
 }

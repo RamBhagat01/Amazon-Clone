@@ -30,7 +30,7 @@ export function render() {
     let finaldate = '';
 
     deliverydetails.forEach((detail) => {
-      if ( item.deliveryid === detail.id ) {
+      if ( item.deliveryOptionId === detail.deliveryOptionId ) {
 
       finaldate = dayjs().add(detail.deliverydays , 'days').format('dddd, MMMM D')
       }
@@ -106,7 +106,7 @@ export function render() {
       ? 'FREE'
       : `$${(option.pricecents/100).toFixed(2)}`
       
-      const checking = (item.deliveryid === option.id)
+      const checking = (item.deliveryOptionId === option.deliveryOptionId)
       //console.log(typeof checking); = boolean value
       //console.log(checking);
 
@@ -114,7 +114,7 @@ export function render() {
         
           <div class="delivery-option js-render"
           data-product-id = "${matcheditems.id}"
-          data-delivery-id = "${option.id}"
+          data-delivery-id = "${option.deliveryOptionId}"
           >
             <input type="radio" 
             ${checking ?'checked' : ''}
@@ -186,7 +186,7 @@ export function render() {
           cart.forEach((item) => {
             if ( productid1 === item.productId) {
               maching1 = item 
-              maching1.deliveryid = deliveryid1
+              maching1.deliveryOptionId = deliveryid1
             }
           })  
 
