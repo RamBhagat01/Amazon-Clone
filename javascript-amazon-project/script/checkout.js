@@ -1,6 +1,6 @@
 import {render} from './checkout/order-summary.js';
 import {call} from './checkout/payment-summary.js'
-import { cart} from '../data/cart.js';
+import { cart, deletecart} from '../data/cart.js';
 import {  products, fetchproducts } from '../data/products.js';
 import {deliverydetails} from '../data/deliveryoption.js';
 import {cartquantity1} from '../data/cart.js';
@@ -206,6 +206,13 @@ async function loadpage() {
     // Example = https://127.0.0.1:5500/checkout.html => THEN IT WILL (JUST) CHANGE FILE PATH FROM {checkout.html} TO {orders.html}. 
 
     window.location.href = 'orders.html';
+
+    //this will empty your cart after order id generated!
+    
+    cart.forEach((items) => {
+      const cartid = items.productId;
+      deletecart(cartid);
+    })
 
   })
 
