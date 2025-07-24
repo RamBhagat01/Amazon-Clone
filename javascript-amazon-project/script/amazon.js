@@ -151,6 +151,7 @@ function rendercallback() {
   // console.log(Number(cartquantity));
   console.log(cart);
   };
+  updateCart();
 }
 
 

@@ -1,4 +1,6 @@
 import {orders} from '../data/orders.js'
+import { addtoCart } from '../data/cart.js';
+import { cart } from '../data/cart.js';
 
 const products =[
   {
@@ -750,7 +752,10 @@ orders.forEach((order) => {
                     </div>
                     <button class="buy-again-button button-primary">
                     <img class="buy-again-icon" src="images/icons/buy-again.png">
-                    <span class="buy-again-message">Buy it again</span>
+                    <span class="buy-again-message js-buymore"
+                      data-product-id = "${matcheditems.id}">
+                      Buy it again
+                    </span>
                     </button>
                 </div>
 
@@ -774,3 +779,40 @@ orders.forEach((order) => {
 
     
 document.querySelector('.orders-grid').innerHTML = generatehtml;
+
+
+
+
+//updating cart quantity for order.html page
+
+function updateCart() {
+    let cartquantity = 0;
+
+    cart.forEach((items) => {
+      cartquantity += items.quantity
+    })
+
+    document.querySelector('.cart-quantity').innerHTML = cartquantity;
+
+  // console.log(Number(cartquantity));
+  
+};
+updateCart();
+
+
+
+//working of BUY-MORE button..
+
+document.querySelectorAll('.js-buymore')
+.forEach((button) => {
+  button.addEventListener('click', () => {
+
+    const proid = button.dataset.productId;
+    console.log(proid);
+    addtoCart(proid);  
+    
+    updateCart();
+  })
+
+ 
+});

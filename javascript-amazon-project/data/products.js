@@ -188,7 +188,7 @@ export function fetchproducts() {
     console.log('load products via fetch');
 
   }).catch ((error) => {
-      console.log('Un-expected reeor occoured. Try again later (fetch-products)')
+      console.log('Un-expected error occoured. Try again later (fetch-products)')
     });
 
 
@@ -217,10 +217,7 @@ export function loadproducts(fun) {
       if (material.keywords === 'appliances') {
       return new electronics(material)
       }
-      // do not use else statement because of POLYMORPHISM ( video time stamp = TIME = 19:13:19)
-
-      //POLY... = MEANS WE CAN USE ONLY product.something at html generating stage...because clothing is a sub-set of product...
-
+      
       return new product(material)
 
     });
@@ -232,7 +229,7 @@ export function loadproducts(fun) {
 
   xhr
   .addEventListener('error' , (error) => {
-    console.log('Un-expected reeor occoured. Try again later (load-products)')
+    console.log('Un-expected error occoured. Try again later (load-products)')
   })
 
  xhr.open('GET','https://supersimplebackend.dev/products');
