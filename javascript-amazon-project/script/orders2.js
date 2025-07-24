@@ -683,9 +683,9 @@ console.log(orders);
 console.log(products);
 
 let generatehtml = '';
-let html2;
-let matcheditems ;
 
+let matcheditems ;
+let html2= ``;
 
 
 
@@ -739,8 +739,9 @@ orders.forEach((order) => {
 
  // THIS FUNCTION IS RESPONSIBLE FOR CLUBBING 2 PRODUCTS WHICH ORDERED TOGETHER THROUGH CART!
 
-  function cluborder(orderproducts) {
 
+  function cluborder(orderproducts) {
+ 
     orderproducts.forEach((item) => {
 
       const itemid = item.productId;
