@@ -663,7 +663,7 @@ const products =[
   }
 ]
 
-let generatehtml = '';
+
 
 /* 
     order = [{
@@ -682,103 +682,127 @@ let generatehtml = '';
 console.log(orders);
 console.log(products);
 
+let generatehtml = '';
+let html2;
+let matcheditems ;
+
+
+
+
+//MOST IMPORTANT CART ORDER DISPLAY FEATURE ;
 
 orders.forEach((order) => {
 
-    const orderid = order.id;
-    const orderprice = ((order.totalCostCents)/100).toFixed(2) 
-    //console.log(orderprice);
-    const orderproducts = order.products;
+  const orderid = order.id;
+  const orderprice = ((order.totalCostCents)/100).toFixed(2) 
+  //console.log(orderprice);
+  const orderproducts = order.products;
 
-    const orderdate = new Date(order.orderTime);
-    const ordertime = orderdate.toLocaleDateString('US', {day:'numeric', month: 'long', year: 'numeric'});
+  const orderdate = new Date(order.orderTime);
+  const ordertime = orderdate.toLocaleDateString('US', {day:'numeric', month: 'long', year: 'numeric'});
+
+
+  generatehtml += `<div class="order-container">
+    <div class="order-header">
+
+      <div class="order-header-left-section">
+        <div class="order-date">
+        <div class="order-header-label">Order Placed:</div>
+        <div>${ordertime}</div>
+        </div>
+        <div class="order-total">
+        <div class="order-header-label">Total:</div>
+        <div>$${orderprice}</div>
+        </div>
+      </div>
+
+      <div class="order-header-right-section">
+          <div class="order-header-label">Order ID:</div>
+          <div>${orderid}</div>
+      </div>
+
     
-    let matcheditems ;
+    ${cluborder(orderproducts)}
+    
+  `;
+
+ // THIS FUNCTION IS RESPONSIBLE FOR CLUBBING 2 PRODUCTS WHICH ORDERED TOGETHER THROUGH CART!
+
+  function cluborder(orderproducts) {
 
     orderproducts.forEach((item) => {
-        const itemid = item.productId;
-        const orderdate2 =  new Date(item.estimatedDeliveryTime);
-        const deldate = orderdate2.toLocaleDateString('US', {day:'numeric', month: 'long', year: 'numeric'});
-        const proquantity = item.quantity;
-        
-    
-        products.forEach((product) => {
-            if (product.id === itemid) {
-            matcheditems = product;
-            }
-        }); 
 
-        console.log(matcheditems);
+      const itemid = item.productId;
+      const orderdate2 =  new Date(item.estimatedDeliveryTime);
+      const proquantity = item.quantity;
 
-        generatehtml += `
+      const param = {day:'numeric', month: 'long', year: 'numeric'}
+      const deldate = orderdate2.toLocaleDateString('US', param);
 
-        <div class="order-container">
-            
-            <div class="order-header">
+      products.forEach((product) => {
+          if (product.id === itemid) {
+          matcheditems = product;
+          }
+      }); 
 
-                <div class="order-header-left-section">
-                    <div class="order-date">
-                    <div class="order-header-label">Order Placed:</div>
-                    <div>${ordertime}</div>
-                    </div>
-                    <div class="order-total">
-                    <div class="order-header-label">Total:</div>
-                    <div>$${orderprice}</div>
-                    </div>
-                </div>
+      //console.log(matcheditems);
 
-                <div class="order-header-right-section">
-                    <div class="order-header-label">Order ID:</div>
-                    <div>${orderid}</div>
-                </div>
+      html2 += `
+      </div>
+        <div class="order-details-grid">
 
+          <div class="product-image-container">
+              <img src="${matcheditems.image}">
+          </div>
+
+          <div class="product-details">
+            <div class="product-name">
+            ${matcheditems.name}
             </div>
-
-            <div class="order-details-grid">
-
-                <div class="product-image-container">
-                    <img src="${matcheditems.image}">
-                </div>
-
-                <div class="product-details">
-                    <div class="product-name">
-                   ${matcheditems.name}
-                    </div>
-                    <div class="product-delivery-date">
-                    Arriving on: ${deldate}
-                    </div>
-                    <div class="product-quantity">
-                    Quantity: ${proquantity}
-                    </div>
-                    <button class="buy-again-button button-primary">
-                    <img class="buy-again-icon" src="images/icons/buy-again.png">
-                    <span class="buy-again-message js-buymore"
-                      data-product-id = "${matcheditems.id}">
-                      Buy it again
-                    </span>
-                    </button>
-                </div>
-
-                <div class="product-actions">
-                    <a href="tracking.html">
-                    <button class="track-package-button button-secondary">
-                        Track package
-                    </button>
-                    </a>
-                </div>
-
-            
+            <div class="product-delivery-date">
+            Arriving on: ${deldate}
             </div>
+            <div class="product-quantity">
+            Quantity: ${proquantity}
+            </div>
+            <button class="buy-again-button button-primary">
+            <img class="buy-again-icon" src="images/icons/buy-again.png">
+            <span class="buy-again-message js-buymore"
+              data-product-id = "${matcheditems.id}">
+              Buy it again
+            </span>
+            </button>
+          </div>
 
+          <div class="product-actions">
+            <a href="tracking.html">
+            <button class="track-package-button button-secondary">
+                Track package
+            </button>
+            </a>
+          </div>
+
+      
         </div>
-        `;
+      </div>
+      `;
 
-    })
+     
+
+    });
+
+    console.log(html2)
+    return html2;
+    
+
+  };
+    
+  html2 = '';
 
 });
 
-    
 document.querySelector('.orders-grid').innerHTML = generatehtml;
+
 
 
 
@@ -798,6 +822,8 @@ function updateCart() {
   
 };
 updateCart();
+
+
 
 
 
