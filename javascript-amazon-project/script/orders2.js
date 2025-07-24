@@ -2,7 +2,7 @@ import {orders} from '../data/orders.js'
 import { addtoCart } from '../data/cart.js';
 import { cart } from '../data/cart.js';
 
-const products =[
+export const products =[
   {
     "id": "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
     "image": "images/products/athletic-cotton-socks-6-pairs.jpg",
@@ -691,6 +691,7 @@ let html2= ``;
 
 //MOST IMPORTANT CART ORDER DISPLAY FEATURE ;
 
+
 orders.forEach((order) => {
 
   const orderid = order.id;
@@ -792,7 +793,7 @@ orders.forEach((order) => {
 
         <div class="product-actions">
 
-          <a href="tracking.html">
+          <a href="tracking.html?orderId=${orderid}&productId=${matcheditems.id}&deliveryDate=${deldate}&quantity=${proquantity}">
             <button class="track-package-button button-secondary">
               Track package
             </button>
@@ -805,7 +806,7 @@ orders.forEach((order) => {
 
     });
 
-    console.log(html2)
+    //console.log(html2)
     return html2;
     
 
@@ -821,7 +822,8 @@ document.querySelector('.orders-grid').innerHTML = generatehtml;
 
 
 
-//updating cart quantity for order.html page
+
+//updating cart quantity icon on order.html page
 
 function updateCart() {
     let cartquantity = 0;
