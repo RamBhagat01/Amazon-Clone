@@ -702,27 +702,38 @@ orders.forEach((order) => {
   const ordertime = orderdate.toLocaleDateString('US', {day:'numeric', month: 'long', year: 'numeric'});
 
 
-  generatehtml += `<div class="order-container">
+  generatehtml += `
+  <div class="order-container">
+
     <div class="order-header">
 
       <div class="order-header-left-section">
+
         <div class="order-date">
-        <div class="order-header-label">Order Placed:</div>
-        <div>${ordertime}</div>
+          <div class="order-header-label">Order Placed:</div>
+          <div>${ordertime}</div>
         </div>
+
         <div class="order-total">
-        <div class="order-header-label">Total:</div>
-        <div>$${orderprice}</div>
+          <div class="order-header-label">Total:</div>
+          <div>$${orderprice}</div>
         </div>
+
       </div>
 
       <div class="order-header-right-section">
-          <div class="order-header-label">Order ID:</div>
-          <div>${orderid}</div>
+
+        <div class="order-header-label">Order ID:</div>
+        <div>${orderid}</div>
+
       </div>
 
-    
+    </div>
+
     ${cluborder(orderproducts)}
+    
+    
+  </div>
     
   `;
 
@@ -748,46 +759,48 @@ orders.forEach((order) => {
       //console.log(matcheditems);
 
       html2 += `
-      </div>
-        <div class="order-details-grid">
+      <div class="order-details-grid">
+      
+        <div class="product-image-container">
+          <img src="${matcheditems.image}">
+        </div>
 
-          <div class="product-image-container">
-              <img src="${matcheditems.image}">
+        <div class="product-details">
+
+          <div class="product-name">
+            ${matcheditems.name}
           </div>
 
-          <div class="product-details">
-            <div class="product-name">
-            ${matcheditems.name}
-            </div>
-            <div class="product-delivery-date">
+          <div class="product-delivery-date">
             Arriving on: ${deldate}
-            </div>
-            <div class="product-quantity">
+          </div>
+
+          <div class="product-quantity">
             Quantity: ${proquantity}
-            </div>
-            <button class="buy-again-button button-primary">
+          </div>
+
+          <button class="buy-again-button button-primary">
             <img class="buy-again-icon" src="images/icons/buy-again.png">
             <span class="buy-again-message js-buymore"
               data-product-id = "${matcheditems.id}">
               Buy it again
             </span>
-            </button>
-          </div>
+          </button>
 
-          <div class="product-actions">
-            <a href="tracking.html">
-            <button class="track-package-button button-secondary">
-                Track package
-            </button>
-            </a>
-          </div>
-
-      
         </div>
+
+        <div class="product-actions">
+
+          <a href="tracking.html">
+            <button class="track-package-button button-secondary">
+              Track package
+            </button>
+          </a>
+
+        </div>
+
       </div>
       `;
-
-     
 
     });
 
